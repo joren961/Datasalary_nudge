@@ -12,10 +12,6 @@ app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
 
-router.get('/prediction', (req, res) => {
-
-});
-
 router.get('/', (req, res) => {
     res.send()
 });

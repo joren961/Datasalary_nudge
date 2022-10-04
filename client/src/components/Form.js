@@ -1,3 +1,33 @@
+import React from 'react';
+import Select from 'react-select'
+
+const jobOptions = [
+    { value: '0', label: 'Data Scientist' },
+    { value: '1', label: 'Data Engineer' },
+    { value: '2', label: 'Data Analyst' },
+    { value: '3', label: 'Data Science Manager' },
+    {value: '4', label: 'Machine Learning Engineer'},
+    { value: '5', label: 'ML/AI Scientist' },
+]
+
+const countryOptions = [
+    { value: 'US', label: 'United States' },
+    { value: 'GB', label: 'Great Britain' },
+    { value: 'IN', label: 'India' },
+    { value: 'CA', label: 'Canada' },
+    {value: 'DE', label: 'Germany'},
+    { value: 'FR', label: 'France' },
+        {value: 'ES', label: 'Spain'},
+        {value: 'GR', label: 'Greece'},
+        {value: 'JP', label: 'Japan'},
+        {value: 'PT', label: 'Portugal'},
+        {value: 'BR', label: 'Brazil'},
+        {value: 'PK', label: 'Pakistan'},
+        {value: 'NL', label: 'Netherlands'},
+        {value: 'PL', label: 'Poland'},
+        {value: 'IT', label: 'Italy'},
+        {value: 'RU', label: 'Russia'},
+]
 
 class Form extends React.Component {
     constructor(props) {
@@ -22,57 +52,40 @@ class Form extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    What is your (desired) profession?
-                    <select>
-                        <option value="0">Data Scientist</option>
-                        <option value="1">Data Engineer</option>
-                        <option selected value="2">Data Analyst</option>
-                        <option selected value="3">Data Architect</option>
-                        <option selected value="4">Data Science Manager</option>
-                        <option selected value="5">ML/AI Scientist</option>
-                    </select>
-                </label>
-                <label>
-                    What is your experience?
+                <div>
+                    <label>What is your (desired) profession?</label>
+                    <Select options={jobOptions}/>
+                </div>
+
+                <div>
+                    <label>What is your experience? </label>
+
                     <select>
                         <option value="0">Entry</option>
                         <option value="1">Medior</option>
                         <option selected value="2">Senior</option>
                         <option selected value="3">Executive</option>
                     </select>
-                </label>
-                <label>
-                    Where are you currently resided?
-                    <select>
-                        <option value="US">United States</option>
-                        <option value="GB">Great Britain</option>
-                        <option selected value="IN">India</option>
-                        <option selected value="CA">Canada</option>
-                        <option selected value="DE">Germany</option>
-                        <option selected value="FR">France</option>
-                        <option selected value="ES">Spain</option>
-                        <option selected value="GR">Greece</option>
-                        <option selected value="JP">Japan</option>
-                        <option selected value="PT">Portugal</option>
-                        <option selected value="BR">Brazil</option>
-                        <option selected value="PK">Pakistan</option>
-                        <option selected value="NL">Netherlands</option>
-                        <option selected value="PL">Poland</option>
-                        <option selected value="IT">Italy</option>
-                        <option selected value="RU">Russia</option>
-                    </select>
-                </label>
-                <label>
-                    Where do you want to work from?
+                </div>
+
+                <div>
+                    <label>Where are you currently resided</label>
+                    <Select options={countryOptions}/>
+                </div>
+
+                <div>
+                    <label> Where do you want to work from? </label>
                     <select>
                         <option selected value="0">Office</option>
                         <option value="1">Remote</option>
                         <option selected value="2">Hybrid</option>
                     </select>
-                </label>
+                </div>
+
                 <input type="submit" value="Submit" />
             </form>
         );
     }
 }
+
+export default Form
