@@ -1,0 +1,24 @@
+services:
+  tensorflow:
+    build: ./models
+    restart: unless-stopped
+    environment:
+      MODEL_NAME: 'ds_salaries'
+    ports:
+      - 8500:8500
+      - 8501:8501
+    volumes:
+      - /home/deploy/dcp-file/tf_serving/ds_salaries_model.config:/ds_salaries_model/ds_salaries_model.config
+
+  react:
+    build: ./client
+    environment:
+      DBNAME: 'kadanst'
+      DBUSERNAME: 'root'
+      DBPASSWORD: 'password'
+      PORT: '8000'
+      HOST: 'localhost'
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tensorflow

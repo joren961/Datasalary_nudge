@@ -1,5 +1,6 @@
 import React from 'react';
-import Select from 'react-select'
+import Select from 'react-select';
+import tf, {log} from '@tensorflow/tfjs'
 
 const jobOptions = [
     { value: '0', label: 'Data Scientist' },
@@ -32,12 +33,30 @@ const countryOptions = [
 class Form extends React.Component {
     constructor(props) {
         super(props);
+        this.loadModel();
+
         this.state = {
-            value: 'Please write an essay about your favorite DOM element.'
+            profession: '',
+            experience: 0,
+            residence: '',
+            remote: 0,
         };
+
+        this.model = null;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    loadModel() {
+        tf.loadLayersModel('https://raw.githubusercontent.com/joren961/Datasalary_nudge/main/model/model.json')
+            .then((model) => {
+                console.log("Succes")
+                this.model = model;
+            })
+            .catch(()=>{
+                console.log("Couldn't load model")
+            })
     }
 
     handleChange(event) {
@@ -45,7 +64,7 @@ class Form extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('An essay was submitted: ' + this.state.value);
+        this.model.predict().data();
         event.preventDefault();
     }
 
